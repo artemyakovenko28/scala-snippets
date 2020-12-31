@@ -5,11 +5,8 @@ class SplitStrings {
 
   def solution(s: String): List[String] = {
     s.grouped(2).map(v => {
-      if (v.length == 2) {
-        v
-      } else {
-        v + "_"
-      }
+      if (v.length == 2) v
+      else v + "_"
     }).toList
   }
 }
