@@ -13,6 +13,7 @@ abstract class Element {
   def above(that: Element): Element = {
     val this1 = this widen that.width
     val that1 = that widen this.width
+    assert(this1.width == that1.width)
     elem(this1.contents ++ that1.contents)
   }
 
@@ -30,7 +31,7 @@ abstract class Element {
       val left = elem(' ', (w - width) / 2, height)
       val right = elem(' ', w - width - left.width, height)
       left beside this beside right
-    }
+    } ensuring(w <= _.width)
 
   def heighten(h: Int): Element =
     if (h <= height) this
@@ -66,8 +67,11 @@ object Element {
   def elem(contents: Array[String]): Element =
     new ArrayElement(contents)
 
-  def elem(chr: Char, width: Int, height: Int): Element =
+  def elem(chr: Char, width: Int, height: Int): Element = {
+    require(width > 0)
+    require(height > 0)
     new UniformElement(chr, width, height)
+  }
 
   def elem(line: String): Element =
     new LineElement(line)
