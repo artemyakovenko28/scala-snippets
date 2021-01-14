@@ -101,3 +101,24 @@ val ts = TreeSet(9, 3, 1, 8, 0, 2, 7, 4, 6, 5)
 val cs = TreeSet('f', 'u', 'n')
 var tm = TreeMap(3 -> 'x', 1 -> 'x', 4 -> 'x')
 tm += (2 -> 'x')
+
+// initializing collections
+val colorsList = List("blue", "yellow", "red", "green")
+val colorsSet = TreeSet[String]() ++ colorsList
+colorsSet.toList
+colorsSet.toArray
+
+val mutableSet = mutable.Set.empty ++= colorsSet
+val immutableSet = Set.empty ++ mutableSet
+val mutaMap = mutable.Map("i" -> 1, "ii" -> 2)
+val immutableMap = Map.empty ++ mutaMap
+
+// Tuples
+def longestWord(words: Array[String]): (String, Int) =
+  words.zipWithIndex.maxBy(_._1.length)
+
+val longest = longestWord("The quick brown fox".split(" "))
+longest._1
+longest._2
+val (word, index) = longest
+val tupleOne, tupleTwo = longest
