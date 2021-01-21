@@ -2,6 +2,7 @@ package com.company
 package functional_objects
 
 import scala.annotation.tailrec
+import scala.language.implicitConversions
 
 class Rational(n: Int, d: Int) extends Ordered[Rational] {
   require(d != 0)
@@ -68,6 +69,22 @@ class Rational(n: Int, d: Int) extends Ordered[Rational] {
 
   override def compare(that: Rational): Int =
     (this.numer * that.denom) - (that.numer * this.denom)
+
+
+  def canEqual(other: Any): Boolean = other.isInstanceOf[Rational]
+
+  override def equals(other: Any): Boolean = other match {
+    case that: Rational =>
+      (that canEqual this) &&
+        numer == that.numer &&
+        denom == that.denom
+    case _ => false
+  }
+
+  override def hashCode(): Int = {
+    val state = Seq(numer, denom)
+    state.map(_.hashCode()).foldLeft(0)((a, b) => 31 * a + b)
+  }
 }
 
 object Rational {

@@ -67,5 +67,3 @@ for (d <- Direction.values)
 
 Direction.East.id
 Direction(1)
-
-US.Dollar.from
