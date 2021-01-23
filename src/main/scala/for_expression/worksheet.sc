@@ -19,10 +19,11 @@ for {
   ch <- p.children
 } yield (p.name, ch.name)
 
-for (x <- List(1,2); y <- List("one", "two")) yield (x, y)
+for (x <- List(1, 2); y <- List("one", "two")) yield (x, y)
 
 // querying with for expressions
 case class Book(id: Int, title: String, authors: String*)
+
 val books: List[Book] =
   List(
     Book(
