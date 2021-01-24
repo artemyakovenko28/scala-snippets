@@ -1,5 +1,6 @@
 import scala.collection.immutable.{ListMap, Queue}
 import scala.collection.mutable
+import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
 // LazyList (Stream)
 val str = 1 #:: 2 #:: 3 #:: LazyList.empty
@@ -40,3 +41,31 @@ builder += ("one" -> 1)
 builder += ("two" -> 2)
 val lms = builder.result()
 lms("two")
+
+// ArrayBuffer
+val buf = ArrayBuffer.empty[Int]
+buf += 1
+buf += 10
+buf.toArray
+
+// ListBuffer
+val lBuf = ListBuffer.empty[Int]
+lBuf += 1
+lBuf += 10
+buf.toArray
+
+// StringBuilder
+val sb = new StringBuilder
+sb += 'a'
+sb ++= "bcde"
+sb.toString()
+
+// Array
+val a1 = Array(1, 2, 3)
+val a2 = a1.map(_ * 3)
+val a3 = a2.filter(_ % 2 != 0)
+a3.reverse
+
+val seq: Seq[Int] = a1
+val a4 = seq.toArray
+a1 eq a4
